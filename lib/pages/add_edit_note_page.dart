@@ -80,6 +80,7 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
       }
 
       Navigator.of(context).pop();
+      Navigator.of(context).pop();
     }
   }
 
