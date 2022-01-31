@@ -1,16 +1,7 @@
-# notesapp
+# Notesapp
 
-A new Flutter project.
+A notes app where you can store your stuff by giving them a title and a description. It will display all the notes in a colourfull card like widget. You can also toggle a switch named Important if you have a confidential description and dont want to show it on the note page. It uses a Sql database for the storing of data. The best way to check these features is to install the app and use it yourself.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Download the app from here
+https://www.dropbox.com/s/fcnulelwzfxnjpo/Notes_f.apk?dl=0
