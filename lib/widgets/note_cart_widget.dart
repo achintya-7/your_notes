@@ -55,7 +55,18 @@ class NoteCardWidget extends StatelessWidget {
               ),
             ),
 
-            Text(
+          
+            note.isImportant
+             ? Text(
+               " ... ",
+               maxLines: 4,
+               overflow: TextOverflow.fade,
+              style: TextStyle(
+                  color: Colors.grey.shade800,
+                  fontSize: 16,
+              ),
+             )
+            : Text(
               note.description,
               maxLines: 4,
               overflow: TextOverflow.fade,

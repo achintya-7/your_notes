@@ -75,11 +75,13 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
 
       if (isUpdating) {
         await updateNote();
+        Navigator.of(context).pop();
+
       } else {
         await addNote();
       }
 
-      Navigator.of(context).pop();
+      
       Navigator.of(context).pop();
     }
   }
@@ -96,7 +98,7 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
 
   Future addNote() async {
     final note = Note(
-        isImportant: true,
+        isImportant: isImportant,
         title: title,
         description: description,
         createdTime: DateTime.now());

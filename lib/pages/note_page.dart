@@ -51,7 +51,7 @@ class _NotePageState extends State<NotePageState> {
       ),
       drawer: Drawer(
         child: Container(
-          color: Mytheme.darkBluishColor,
+          color: Colors.grey.shade900,
           child: Column(
             children: [
               
@@ -76,8 +76,8 @@ class _NotePageState extends State<NotePageState> {
               ),
 
               IconButton(onPressed: () {
-                launch("https://github.com/achintya-7");
-              }, icon: Image.asset('assets/images/icons8-github-96.png'), iconSize: 96)
+                launch("https://github.com/achintya-7/notesApp_flutter");
+              }, icon: Image.asset('assets/images/icons8-github-96.png'), iconSize: 80)
             
             ]
           ),
