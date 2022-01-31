@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:notesapp/db/notes_database.dart';
 import 'package:notesapp/model/note.dart';
+import 'package:notesapp/pages/add_edit_note_page.dart';
+import 'package:notesapp/pages/note_detail_page.dart';
 import 'package:notesapp/widgets/note_cart_widget.dart';
+import 'package:notesapp/widgets/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -12,17 +15,25 @@ class NotePageState extends StatefulWidget {
   NotePageState({Key? key}) : super(key: key);
 
   @override
-  State<NotePageState> createState() => _NoteHomeState();
+  State<NotePageState> createState() => _NotePageState();
 }
 
-class _NoteHomeState extends State<NotePageState> {
+class _NotePageState extends State<NotePageState> {
   late List<Note> notes;
   bool _isLoading = false;
 
   @override
   void initState() {
-    refreshNote();
     super.initState();
+
+    refreshNote();
+  }
+
+  @override
+  void dispose() {
+    NoteDatabase.instance.close();
+
+    super.dispose();
   }
 
   Future refreshNote() async {
@@ -35,24 +46,40 @@ class _NoteHomeState extends State<NotePageState> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [editButton(), deleteButton()],
+        title: "Notes".text.xl3.white.make(),
+        backgroundColor: Colors.transparent,
       ),
       drawer: Drawer(
         child: Container(
-          color: Colors.lightBlueAccent,
+          color: Mytheme.darkBluishColor,
           child: Column(
             children: [
-              40.heightBox,
+              
+              80.heightBox,
+              
               "Made By".text.white.xl3.semiBold.make().p(16),
               "Achintya".text.white.bold.xl4.make().shimmer(
                   primaryColor: Vx.pink500, secondaryColor: Vx.blue500),
-              IconButton(
-                  onPressed: () {
-                    launch("https://github.com/achintya-7");
+              
+              20.heightBox,
+              
+              ElevatedButton(onPressed: () {
+                    launch("https://linktr.ee/achintya_only");
                   },
-                  iconSize: 92,
-                  icon: Image.asset("assets/images/icons8-github-100.png"))
-            ],
+                   child: "Link Tree".text.white.make(),
+                   style: ElevatedButton.styleFrom(
+                     primary: Colors.greenAccent,
+                     padding: EdgeInsets.symmetric(horizontal: 35, vertical: 10),
+                     textStyle:
+                      TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white70)
+                   ),
+              ),
+
+              IconButton(onPressed: () {
+                launch("https://github.com/achintya-7");
+              }, icon: Image.asset('assets/images/icons8-github-96.png'), iconSize: 96)
+            
+            ]
           ),
         ),
       ),
@@ -65,6 +92,17 @@ class _NoteHomeState extends State<NotePageState> {
                     style: TextStyle(color: Colors.white, fontSize: 24),
                   )
                 : buildNotes(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        child: Icon(Icons.add),
+        onPressed: () async {
+          await Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => AddEditNotePage()),
+          );
+
+          refreshNote();
+        },
       ),
     );
   }
@@ -91,10 +129,4 @@ class _NoteHomeState extends State<NotePageState> {
           );
         },
       );
-
-  Widget editButton() =>
-      IconButton(icon: Icon(Icons.edit_outlined), onPressed: () {});
-
-  Widget deleteButton() =>
-      IconButton(icon: Icon(Icons.delete), onPressed: () {});
 }

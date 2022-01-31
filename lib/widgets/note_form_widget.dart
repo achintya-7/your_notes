@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:notesapp/widgets/theme.dart';
 
 class NoteFormWidget extends StatelessWidget {
   final bool? isImportant;
@@ -71,6 +72,17 @@ class NoteFormWidget extends StatelessWidget {
           border: InputBorder.none,
           hintText: 'Title',
           hintStyle: TextStyle(color: Colors.white70),
+          fillColor: Mytheme.darkBluishColor,
+          filled: true,
+
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+            borderRadius: BorderRadius.circular(25.7),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+            borderRadius: BorderRadius.circular(25.7),
+          ),
         ),
         validator: (title) =>
             title != null && title.isEmpty ? 'Title cannot be empty' : null,
@@ -85,6 +97,16 @@ class NoteFormWidget extends StatelessWidget {
           border: InputBorder.none,
           hintText: 'Type Something....',
           hintStyle: TextStyle(color: Colors.white60),
+          fillColor: Mytheme.darkBluishColor,
+          filled: true,
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+            borderRadius: BorderRadius.circular(25.7),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+            borderRadius: BorderRadius.circular(25.7),
+          ),
         ),
         validator: (title) => title != null && title.isEmpty
             ? 'The description cannot be empty'

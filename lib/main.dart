@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notesapp/pages/note_page.dart';
+import 'package:notesapp/widgets/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: NotePageState(),
+      theme: Mytheme.darkTheme(context),
     );
   }
 }

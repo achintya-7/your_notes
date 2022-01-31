@@ -36,16 +36,16 @@ class NoteDatabase {
     final integerType = 'INTEGER NOT NULL';
     final textType = 'TEXT NOT NULL';
 
-    await db.execute("""
-      CREATE_TABLE $tableNotes (
-        ${NoteFields.id} $idType;
-        ${NoteFields.isImportant} $boolType;
-        ${NoteFields.number} $integerType;
-        ${NoteFields.description} $textType;
-        ${NoteFields.title} $textType;
-        ${NoteFields.time} $textType;
+    await db.execute('''
+      CREATE TABLE $tableNotes (
+        ${NoteFields.id} $idType,
+        ${NoteFields.isImportant} $boolType,
+        ${NoteFields.number} $integerType,
+        ${NoteFields.description} $textType,
+        ${NoteFields.title} $textType,
+        ${NoteFields.time} $textType
       )
-    """);
+    ''');
   }
 
   Future<Note> create(Note note) async {
