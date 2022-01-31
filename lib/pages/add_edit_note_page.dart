@@ -18,7 +18,6 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
   final _formkey = GlobalKey<FormState>();
 
   late bool isImportant;
-  late int number;
   late String title;
   late String description;
 
@@ -27,7 +26,6 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
     super.initState();
 
     isImportant = widget.note?.isImportant ?? false;
-    number = widget.note?.number ?? 0;
     title = widget.note?.title ?? '';
     description = widget.note?.description ?? '';
   }
@@ -43,11 +41,9 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
         key: _formkey,
         child: NoteFormWidget( 
           isImportant: isImportant,
-          number: number,
           title: title,
           description: description,
           onChangedImportant: (isImportant) => setState(() => this.isImportant = isImportant),
-          onChangedNumber: (number) => setState(() => this.number = number),
           onChangedTitle: (title) => setState(() => this.title = title),
           onChangedDescription: (description) => setState(() => this.description = description),
         ),
@@ -90,7 +86,6 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
   Future updateNote() async {
     final note = widget.note!.copy(
       isImportant: isImportant,
-      number: number,
       title: title,
       description: description,
     );
@@ -101,7 +96,6 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
   Future addNote() async {
     final note = Note(
         isImportant: true,
-        number: number,
         title: title,
         description: description,
         createdTime: DateTime.now());

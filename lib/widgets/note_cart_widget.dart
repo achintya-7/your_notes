@@ -34,7 +34,7 @@ class NoteCardWidget extends StatelessWidget {
     return Card(
       color: color,
       child: Container( 
-        constraints: BoxConstraints(minHeight: minHeight, maxHeight: 200),
+        constraints: BoxConstraints(minHeight: minHeight, maxHeight: 250),
         padding: EdgeInsets.all(8),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -57,11 +57,11 @@ class NoteCardWidget extends StatelessWidget {
 
             Text(
               note.description,
-              maxLines: 5,
+              maxLines: 4,
               overflow: TextOverflow.fade,
               style: TextStyle(
                   color: Colors.grey.shade800,
-                  fontSize: 18,
+                  fontSize: 16,
               ),
             ),
           ],

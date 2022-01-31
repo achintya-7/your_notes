@@ -2,25 +2,22 @@
 
 import 'package:flutter/material.dart';
 import 'package:notesapp/widgets/theme.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class NoteFormWidget extends StatelessWidget {
   final bool? isImportant;
-  final int? number;
   final String? title;
   final String? description;
   final ValueChanged<bool> onChangedImportant;
-  final ValueChanged<int> onChangedNumber;
   final ValueChanged<String> onChangedTitle;
   final ValueChanged<String> onChangedDescription;
 
   const NoteFormWidget({
     Key? key,
     this.isImportant,
-    this.number,
     this.title,
     this.description,
     required this.onChangedImportant,
-    required this.onChangedNumber,
     required this.onChangedTitle,
     required this.onChangedDescription,
   }) : super(key: key);
@@ -39,15 +36,7 @@ class NoteFormWidget extends StatelessWidget {
                   value: isImportant ?? false,
                   onChanged: onChangedImportant,
                 ),
-                Expanded(
-                  child: Slider(
-                    value: (number ?? 0).toDouble(),
-                    min: 0,
-                    max: 5,
-                    divisions: 5,
-                    onChanged: (number) => onChangedNumber(number.toInt()),
-                  ),
-                )
+                "Important".text.xl3.white.make()
               ],
             ),
             buildTitle(),
@@ -66,7 +55,7 @@ class NoteFormWidget extends StatelessWidget {
         style: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
-          fontSize: 24,
+          fontSize: 20,
         ),
         decoration: InputDecoration(
           border: InputBorder.none,
@@ -92,7 +81,7 @@ class NoteFormWidget extends StatelessWidget {
   Widget buildDescription() => TextFormField(
         maxLines: 5,
         initialValue: description,
-        style: TextStyle(color: Colors.white60, fontSize: 18),
+        style: TextStyle(color: Colors.white60, fontSize: 16),
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: 'Type Something....',

@@ -33,14 +33,12 @@ class NoteDatabase {
   Future _createDB(Database db, int version) async {
     final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
     final boolType = 'BOOLEAN NOT NULL';
-    final integerType = 'INTEGER NOT NULL';
     final textType = 'TEXT NOT NULL';
 
     await db.execute('''
       CREATE TABLE $tableNotes (
         ${NoteFields.id} $idType,
         ${NoteFields.isImportant} $boolType,
-        ${NoteFields.number} $integerType,
         ${NoteFields.description} $textType,
         ${NoteFields.title} $textType,
         ${NoteFields.time} $textType
