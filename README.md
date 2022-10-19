@@ -41,7 +41,10 @@ It uses a Sql database for the storing the data. The best way to check these fea
 To build this project:
 <ul>
     <li>Fork this repo</li>
-    <li>Clone or download the forked repo to start working</li>
+    <li>Clone or download the forked repo</li>
+    <li>Open your IDE like Android Studio and open the project folder</li>
+    <li>Launch a configured emulator or connect a device to start running the app</li>
+    <li></li>
 </ul>
 
 
