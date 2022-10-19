@@ -48,11 +48,11 @@ To build this project:
 </ul>
 
 ````
-        flutter create my_app<br>
-        cd my_app<br>
-        flutter analyze<br>
-        flutter test<br>
-        flutter run lib/main.dart<br>
+        flutter create notesApp_flutter
+        cd my_app
+        flutter analyze
+        flutter test
+        flutter run lib/main.dart
 ````
 
 
