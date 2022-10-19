@@ -19,7 +19,7 @@ A notes app where you can store your stuff by giving them a title and a descript
 It uses a Sql database for the storing the data. The best way to check these features is to install the app and use it yourself.
 
 ## Technology Stack
-<hr>
+
 <ul>
 <li>Flutter</li>
 <li><a href="https://pub.dev/packages/sqflite/versions/2.0.0-nullsafety.3">SQLite</a>
@@ -27,7 +27,7 @@ It uses a Sql database for the storing the data. The best way to check these fea
 
 
 ## Getting Started
-<hr>
+
 <ul>
 <li><a href="https://docs.flutter.dev/get-started/install">Install Flutter</a></li>
 <li><a href="https://docs.flutter.dev/development/tools/android-studio">Install Android Studio / IntelliJ / VSCode</a></li>
@@ -37,42 +37,40 @@ It uses a Sql database for the storing the data. The best way to check these fea
 
 
 ## User Installation
-<hr>
+
 To build this project:
 <ul>
     <li>Fork this repo</li>
     <li>Clone or download the forked repo</li>
-    <li>Open your IDE like Android Studio and open the project folder</li>
-    <li>Launch a configured emulator or connect a device to start running the app</li>
-    <li>You can also launch the app by running these commands through the CLI</li>
+    <li>Open your IDE like Android Studio os VsCode and open the project folder</li>
+    <li>Use the following commands to install the packages and build the app
 </ul>
 
 ````
-        flutter create notesApp_flutter
-        cd my_app
-        flutter analyze
-        flutter test
-        flutter run lib/main.dart
+        cd notesApp_flutter
+        flutter pub get
+        flutter run 
 ````
 
 
 ## Download the app from here
-<hr>
+
 https://www.dropbox.com/s/fcnulelwzfxnjpo/Notes_f.apk?dl=0
 
-##How can I contribute to this project?
-<hr>
+## How can I contribute to this project?
+
 Contributions to the project are welcome! 
 If you have a bug or feature request, please open an issue on the GitHub repo. 
 
 ### Using GitHub Issues
-<hr>
+
 Feel free to use GitHub issues for questions, bug reports, and feature requests
-Include as much information as possible and provide any relevant resources (Eg. screenshots)
+Include as much information as possible and provide any relevant resources.
 
 You can also read the contribution.md file and check for more ways to contribute to the project.
 
 ## Contributors
-<hr>
+
 Maintainer: <a href="https://github.com/achintya-7">Achintya</a></p>
+Contributors: <a href="https://github.com/syedzubeen">Zubeen</a></p>
 
