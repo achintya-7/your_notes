@@ -44,8 +44,16 @@ To build this project:
     <li>Clone or download the forked repo</li>
     <li>Open your IDE like Android Studio and open the project folder</li>
     <li>Launch a configured emulator or connect a device to start running the app</li>
-    <li></li>
+    <li>You can also launch the app by running these commands through the CLI</li>
 </ul>
+
+````
+        flutter create my_app<br>
+        cd my_app<br>
+        flutter analyze<br>
+        flutter test<br>
+        flutter run lib/main.dart<br>
+````
 
 
 ## Download the app from here
