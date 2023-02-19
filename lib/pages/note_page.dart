@@ -137,7 +137,7 @@ class _NotePageState extends State<NotePageState> {
               },
               child: NoteCardWidget(note: note, index: index),
             );
-          }),
+          }).reversed.toList(),
         ),
   );
 }
