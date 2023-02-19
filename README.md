@@ -1,6 +1,6 @@
 <h1 align="center" style="border-bottom: none">
     <b>
-        NotesApp<br>
+        Your Notes<br>
     </b>
 </h1>
 <h2 align="center" style="border-bottom: none">
