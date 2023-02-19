@@ -18,6 +18,8 @@ A notes app where you can store your stuff by giving them a title and a descript
 
 It uses a Sql database for the storing the data. The best way to check these features is to install the app and use it yourself.
 
+Also comes with local auth if you have any authentication set p in your device.
+
 ## Technology Stack
 
 <ul>
