@@ -7,7 +7,6 @@ import 'package:notesapp/model/note.dart';
 import 'package:notesapp/pages/add_edit_note_page.dart';
 import 'package:notesapp/pages/note_detail_page.dart';
 import 'package:notesapp/widgets/note_cart_widget.dart';
-import 'package:notesapp/widgets/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -83,16 +82,16 @@ class _NotePageState extends State<NotePageState> {
           ),
         ),
       ),
-      body: Center(
-        child: _isLoading
-            ? CircularProgressIndicator()
-            : notes.isEmpty
-                ? Text(
-                    'No Notes',
+      body: _isLoading
+          ? CircularProgressIndicator()
+          : notes.isEmpty
+              ? Center(
+                child: Text(
+                    'Why not add a note?',
                     style: TextStyle(color: Colors.white, fontSize: 24),
-                  )
-                : buildNotes(),
-      ),
+                  ),
+              )
+              : buildNotes(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
         child: Icon(Icons.add),
@@ -107,14 +106,11 @@ class _NotePageState extends State<NotePageState> {
     );
   }
 
-  Widget buildNotes() => StaggeredGridView.countBuilder(
-        crossAxisCount: 4,
+  Widget buildNotes() => StaggeredGrid.count(
+        crossAxisCount: 2,
         mainAxisSpacing: 4,
         crossAxisSpacing: 4,
-        padding: EdgeInsets.all(8),
-        staggeredTileBuilder: (index) => StaggeredTile.fit(2),
-        itemCount: notes.length,
-        itemBuilder: (context, index) {
+        children: List.generate(notes.length, (index) {
           final note = notes[index];
 
           return GestureDetector(
@@ -127,6 +123,6 @@ class _NotePageState extends State<NotePageState> {
             },
             child: NoteCardWidget(note: note, index: index),
           );
-        },
+        }),
       );
 }

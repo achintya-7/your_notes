@@ -15,8 +15,7 @@ class NoteDatabase {
     if (_database != null) {
       return _database!; // returns the database if there is one
     } else {
-      _database = await _initDB(
-          'notes.db'); // initializes a new database if there is no prior one
+      _database = await _initDB('notes.db'); // initializes a new database if there is no prior one
       return _database!;
     }
   }
@@ -24,8 +23,7 @@ class NoteDatabase {
   // Function to initialize the database
   Future<Database> _initDB(String filePath) async {
     final dbPath = await getDatabasesPath();
-    final path = p.join(dbPath,
-        filePath); // joins the database path and our fileName to it {On Android, it is typically data/data//databases/{database_name}}
+    final path = p.join(dbPath,filePath); // joins the database path and our fileName to it {On Android, it is typically data/data/databases/{database_name}}
     return await openDatabase(path, version: 1, onCreate: _createDB);
   }
 
