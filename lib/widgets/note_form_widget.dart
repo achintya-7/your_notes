@@ -58,23 +58,29 @@ class NoteFormWidget extends StatelessWidget {
           fontSize: 20,
         ),
         decoration: InputDecoration(
-          border: InputBorder.none,
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent),
+            borderRadius: BorderRadius.circular(15),
+          ),
           hintText: 'Title',
           hintStyle: TextStyle(color: Colors.white70),
           fillColor: Mytheme.darkBluishColor,
           filled: true,
-
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.black),
-            borderRadius: BorderRadius.circular(25.7),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black),
-            borderRadius: BorderRadius.circular(25.7),
-          ),
+          
+          // enabledBorder: UnderlineInputBorder(
+          //   borderSide: BorderSide(color: Colors.black),
+          //   borderRadius: BorderRadius.circular(15),
+          // ),
+          // focusedBorder: OutlineInputBorder(
+          //   borderSide: BorderSide(color: Colors.black),
+          //   borderRadius: BorderRadius.circular(15),
+          // ),
+          // errorBorder: OutlineInputBorder(
+          //   borderSide: BorderSide(color: Colors.red),
+          //   borderRadius: BorderRadius.circular(15),
+          // ),
         ),
-        validator: (title) =>
-            title != null && title.isEmpty ? 'Title cannot be empty' : null,
+        validator: (title) => title != null && title.isEmpty ? 'Title cannot be empty' : null,
         onChanged: onChangedTitle,
   );
 
@@ -90,16 +96,13 @@ class NoteFormWidget extends StatelessWidget {
           filled: true,
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.black),
-            borderRadius: BorderRadius.circular(25.7),
+            borderRadius: BorderRadius.circular(15),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black),
-            borderRadius: BorderRadius.circular(25.7),
+            borderRadius: BorderRadius.circular(15),
           ),
         ),
-        validator: (title) => title != null && title.isEmpty
-            ? 'The description cannot be empty'
-            : null,
         onChanged: onChangedDescription,
   );
 }

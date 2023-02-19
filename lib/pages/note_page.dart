@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:local_auth/local_auth.dart';
+import 'package:notesapp/auth/local_auth.dart';
 import 'package:notesapp/db/notes_database.dart';
 import 'package:notesapp/model/note.dart';
 import 'package:notesapp/pages/add_edit_note_page.dart';
@@ -24,7 +26,6 @@ class _NotePageState extends State<NotePageState> {
   @override
   void initState() {
     super.initState();
-
     refreshNote();
   }
 
@@ -40,7 +41,7 @@ class _NotePageState extends State<NotePageState> {
     this.notes = await NoteDatabase.instance.readAll();
     setState(() => _isLoading = false);
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,13 +66,13 @@ class _NotePageState extends State<NotePageState> {
               ElevatedButton(onPressed: () {
                     launch("https://linktr.ee/achintya_only");
                   },
-                   child: "Link Tree".text.white.make(),
                    style: ElevatedButton.styleFrom(
-                     primary: Colors.greenAccent,
+                     backgroundColor: Colors.greenAccent,
                      padding: EdgeInsets.symmetric(horizontal: 35, vertical: 10),
                      textStyle:
                       TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white70)
                    ),
+                   child: "Link Tree".text.white.make(),
               ),
 
               IconButton(onPressed: () {
@@ -106,23 +107,37 @@ class _NotePageState extends State<NotePageState> {
     );
   }
 
-  Widget buildNotes() => StaggeredGrid.count(
-        crossAxisCount: 2,
-        mainAxisSpacing: 4,
-        crossAxisSpacing: 4,
-        children: List.generate(notes.length, (index) {
-          final note = notes[index];
+  Widget buildNotes() => Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: StaggeredGrid.count( 
+          crossAxisCount: 2,
+          mainAxisSpacing: 4,
+          crossAxisSpacing: 4,
+          children: List.generate(notes.length, (index) {
+            final note = notes[index];
 
-          return GestureDetector(
-            onTap: () async {
-              await Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => NoteDetailPage(noteId: note.id!),
-              ));
+            return GestureDetector(
+              onTap: () async {
+                bool isAuth = true;
 
-              refreshNote();
-            },
-            child: NoteCardWidget(note: note, index: index),
-          );
-        }),
-      );
+                if (note.isImportant) {
+                  isAuth = await LocalAuth.authenticate();
+                }
+
+                if (!isAuth) {
+                  return;
+                }
+                
+                // ignore: use_build_context_synchronously
+                await Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => NoteDetailPage(noteId: note.id!),
+                ));
+
+                refreshNote();
+              },
+              child: NoteCardWidget(note: note, index: index),
+            );
+          }),
+        ),
+  );
 }

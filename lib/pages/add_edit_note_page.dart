@@ -39,13 +39,15 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
       ),
       body: Form(
         key: _formkey,
-        child: NoteFormWidget( 
+        child: NoteFormWidget(
           isImportant: isImportant,
           title: title,
           description: description,
-          onChangedImportant: (isImportant) => setState(() => this.isImportant = isImportant),
+          onChangedImportant: (isImportant) =>
+              setState(() => this.isImportant = isImportant),
           onChangedTitle: (title) => setState(() => this.title = title),
-          onChangedDescription: (description) => setState(() => this.description = description),
+          onChangedDescription: (description) =>
+              setState(() => this.description = description),
         ),
       ),
     );
@@ -58,8 +60,8 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            onPrimary: Colors.white,
-            primary: isFormValid ? Colors.green.shade500 : Colors.grey.shade700,
+            foregroundColor: Colors.white,
+            backgroundColor: isFormValid ? Colors.green.shade500 : Colors.grey.shade700,
           ),
           onPressed: addorUpdateNote,
           child: Text('Save'),
@@ -76,12 +78,10 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
       if (isUpdating) {
         await updateNote();
         Navigator.of(context).pop();
-
       } else {
         await addNote();
       }
 
-      
       Navigator.of(context).pop();
     }
   }
