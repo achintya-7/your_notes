@@ -57,7 +57,7 @@ To build this project:
 
 ## Download the app from here
 
-https://www.dropbox.com/s/fcnulelwzfxnjpo/Notes_f.apk?dl=0
+https://github.com/achintya-7/your_notes/releases/download/7610893/your-notes.apk
 
 ## How can I contribute to this project?
 
