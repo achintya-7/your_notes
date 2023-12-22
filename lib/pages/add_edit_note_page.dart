@@ -6,7 +6,7 @@ import 'package:notesapp/model/note.dart';
 import 'package:notesapp/widgets/note_form_widget.dart';
 
 class AddEditNotePage extends StatefulWidget {
-  AddEditNotePage({Key? key, this.note}) : super(key: key);
+  AddEditNotePage({super.key, this.note});
 
   final Note? note;
 

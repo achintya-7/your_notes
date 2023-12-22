@@ -7,7 +7,7 @@ import 'package:notesapp/model/note.dart';
 import 'package:notesapp/pages/add_edit_note_page.dart';
 
 class NoteDetailPage extends StatefulWidget {
-  NoteDetailPage({Key? key, required this.noteId}) : super(key: key);
+  NoteDetailPage({super.key, required this.noteId});
 
   final int noteId;
 

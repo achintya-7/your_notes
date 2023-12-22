@@ -16,7 +16,7 @@ class LocalAuth {
       return await _auth.authenticate(
         localizedReason: 'Scan Fingerprint to Authenticate',
       );
-    } on PlatformException catch (e) {
+    } on PlatformException {
       return true;
     }
   }

@@ -13,38 +13,36 @@ class NoteFormWidget extends StatelessWidget {
   final ValueChanged<String> onChangedDescription;
 
   const NoteFormWidget({
-    Key? key,
+    super.key,
     this.isImportant,
     this.title,
     this.description,
     required this.onChangedImportant,
     required this.onChangedTitle,
     required this.onChangedDescription,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              children: [
-                Switch(
-                  value: isImportant ?? false,
-                  onChanged: onChangedImportant,
-                ),
-                "Important".text.xl3.white.make()
-              ],
-            ),
-            buildTitle(),
-            SizedBox(height: 8),
-            buildDescription(),
-            SizedBox(height: 16),
-          ],
-        ),
+    return Padding(
+      padding: EdgeInsets.all(16),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Switch(
+                value: isImportant ?? false,
+                onChanged: onChangedImportant,
+              ),
+              "Important".text.xl3.white.make()
+            ],
+          ),
+          buildTitle(),
+          SizedBox(height: 8),
+          buildDescription(),
+          SizedBox(height: 16),
+        ],
       ),
     );
   }
@@ -66,7 +64,7 @@ class NoteFormWidget extends StatelessWidget {
           hintStyle: TextStyle(color: Colors.white70),
           fillColor: Mytheme.darkBluishColor,
           filled: true,
-          
+
           // enabledBorder: UnderlineInputBorder(
           //   borderSide: BorderSide(color: Colors.black),
           //   borderRadius: BorderRadius.circular(15),
@@ -82,27 +80,29 @@ class NoteFormWidget extends StatelessWidget {
         ),
         validator: (title) => title != null && title.isEmpty ? 'Title cannot be empty' : null,
         onChanged: onChangedTitle,
-  );
+      );
 
-  Widget buildDescription() => TextFormField(
-        maxLines: 5,
-        initialValue: description,
-        style: TextStyle(color: Colors.white60, fontSize: 16),
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: 'Type Something....',
-          hintStyle: TextStyle(color: Colors.white60),
-          fillColor: Mytheme.darkBluishColor,
-          filled: true,
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.black),
-            borderRadius: BorderRadius.circular(15),
+  Widget buildDescription() => Expanded(
+        child: TextFormField(
+          maxLines: 99999,
+          initialValue: description,
+          style: TextStyle(color: Colors.white60, fontSize: 16),
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: 'Type Something....',
+            hintStyle: TextStyle(color: Colors.white60),
+            fillColor: Mytheme.darkBluishColor,
+            filled: true,
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+              borderRadius: BorderRadius.circular(15),
+            ),
           ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black),
-            borderRadius: BorderRadius.circular(15),
-          ),
+          onChanged: onChangedDescription,
         ),
-        onChanged: onChangedDescription,
-  );
+      );
 }

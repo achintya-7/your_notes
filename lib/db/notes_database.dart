@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_declarations
 
-import 'package:notesapp/model/note.dart';
 import 'package:path/path.dart' as p;
 import 'package:sqflite/sqflite.dart';
+
+import 'package:notesapp/model/note.dart';
 
 class NoteDatabase {
   static final NoteDatabase instance = NoteDatabase._init();

@@ -6,12 +6,10 @@ import 'package:velocity_x/velocity_x.dart';
 
 class Mytheme {
   static ThemeData lightTheme(BuildContext context) => ThemeData(
-        primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.lato().fontFamily,
         cardColor: Colors.white,
         canvasColor: creamColor,
-        buttonColor: darkBluishColor,
-        accentColor: darkBluishColor,
+        brightness: Brightness.light,
         primaryTextTheme: GoogleFonts.latoTextTheme(),
         appBarTheme: AppBarTheme(
           color: Colors.white,
@@ -19,16 +17,15 @@ class Mytheme {
           iconTheme: IconThemeData(color: Colors.black),
           titleTextStyle: TextStyle(color: Colors.black, fontSize: 20),
         ),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple).copyWith(secondary: darkBluishColor),
       );
 
   static ThemeData darkTheme(BuildContext context) => ThemeData(
+        useMaterial3: false,
         brightness: Brightness.dark,
-        primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.lato().fontFamily,
         cardColor: Colors.black,
         canvasColor: darkcreamColor,
-        buttonColor: purpleBluishColor,
-        accentColor: Colors.white,
         primaryTextTheme: GoogleFonts.latoTextTheme(),
         appBarTheme: AppBarTheme(
           color: Colors.white,
@@ -36,6 +33,7 @@ class Mytheme {
           iconTheme: IconThemeData(color: Colors.white),
           titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
         ),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple).copyWith(brightness: Brightness.dark),
       );
 
   //Colors
