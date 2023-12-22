@@ -95,12 +95,10 @@ String extractHeadersAndText(String markdown) {
   final matches = regex.allMatches(markdown);
 
   final extractedContent = matches
-      .map((match) => match.group(2))
-      .map(
-        (content) => content?.replaceAllMapped(RegExp(r"\[.*?\]\(.*?\)|!\[.*?\]\(.*?\)", multiLine: true), (match) => ''),
-      ) // Remove links and image text
-      .take(4) // Get only the first 4 matches
-      .join('\n\n'); // Separate them with newlines
+      .map((match) => match.group(2)?.replaceAll(RegExp(r"#"), ''))
+      .map((content) => content?.replaceAllMapped(RegExp(r"\[.*?\]\(.*?\)|!\[.*?\]\(.*?\)", multiLine: true), (match) => ''))
+      .take(4)
+      .join('');
 
   return extractedContent;
 }

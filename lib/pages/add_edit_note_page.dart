@@ -20,6 +20,7 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
   late bool isImportant;
   late String title;
   late String description;
+  bool isPreview = false;
 
   @override
   void initState() {
@@ -43,11 +44,11 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
           isImportant: isImportant,
           title: title,
           description: description,
-          onChangedImportant: (isImportant) =>
-              setState(() => this.isImportant = isImportant),
+          isPreview: isPreview,
+          onChangedImportant: (isImportant) => setState(() => this.isImportant = isImportant),
           onChangedTitle: (title) => setState(() => this.title = title),
-          onChangedDescription: (description) =>
-              setState(() => this.description = description),
+          onChangedDescription: (description) => setState(() => this.description = description),
+          onChangedIsText: (isPreview) => setState(() => this.isPreview = isPreview),
         ),
       ),
     );
@@ -97,11 +98,7 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
   }
 
   Future addNote() async {
-    final note = Note(
-        isImportant: isImportant,
-        title: title,
-        description: description,
-        createdTime: DateTime.now());
+    final note = Note(isImportant: isImportant, title: title, description: description, createdTime: DateTime.now());
 
     await NoteDatabase.instance.create(note);
   }
