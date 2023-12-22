@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, unnecessary_this, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:intl/intl.dart';
 import 'package:notesapp/db/notes_database.dart';
 import 'package:notesapp/model/note.dart';
@@ -42,8 +43,7 @@ class _NoteDetailPageState extends State<NoteDetailPage> {
           ? Center(child: CircularProgressIndicator())
           : Padding(
               padding: EdgeInsets.all(12),
-              child: ListView(
-                padding: EdgeInsets.symmetric(vertical: 8),
+              child: Column(
                 children: [
                   Text(note.title,
                       style: TextStyle(
@@ -57,10 +57,7 @@ class _NoteDetailPageState extends State<NoteDetailPage> {
                     style: TextStyle(color: Colors.white38),
                   ),
                   SizedBox(height: 8),
-                  Text(
-                    note.description,
-                    style: TextStyle(color: Colors.white70, fontSize: 18),
-                  )
+                  MarkdownBody(data: note.description)
                 ],
               ),
             ),
