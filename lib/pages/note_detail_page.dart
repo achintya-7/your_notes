@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, unnecessary_this, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:intl/intl.dart';
 import 'package:notesapp/db/notes_database.dart';
 import 'package:notesapp/model/note.dart';
@@ -52,7 +51,7 @@ class _NoteDetailPageState extends State<NoteDetailPage> {
                     note.title,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 24,
+                      fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -61,7 +60,7 @@ class _NoteDetailPageState extends State<NoteDetailPage> {
                     DateFormat.yMMMd().format(note.createdTime),
                     style: TextStyle(color: Colors.white38),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: 20),
                   MarkDownRenderer(data: note.description),
                 ],
               ),

@@ -90,15 +90,9 @@ class NoteCardWidget extends StatelessWidget {
 }
 
 String extractHeadersAndText(String markdown) {
-  final regex = RegExp(r"^(#+)\s+(.+(?:\n[^\n]*){0,3})", multiLine: true);
-
-  final matches = regex.allMatches(markdown);
-
-  final extractedContent = matches
-      .map((match) => match.group(2)?.replaceAll(RegExp(r"#"), ''))
-      .map((content) => content?.replaceAllMapped(RegExp(r"\[.*?\]\(.*?\)|!\[.*?\]\(.*?\)", multiLine: true), (match) => ''))
-      .take(4)
-      .join('');
-
+  String extractedContent = markdown.
+    replaceAll(RegExp(r"!\[.*?\]\(.*?\)|\[.*?\]\(.*?\)"), '')
+    .replaceAll("#", "");
+  
   return extractedContent;
 }
