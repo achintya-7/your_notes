@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:notesapp/db/notes_database.dart';
 import 'package:notesapp/model/note.dart';
 import 'package:notesapp/pages/add_edit_note_page.dart';
+import 'package:notesapp/widgets/markdown_rendered.dart';
 
 class NoteDetailPage extends StatefulWidget {
   NoteDetailPage({super.key, required this.noteId});
@@ -42,25 +43,25 @@ class _NoteDetailPageState extends State<NoteDetailPage> {
           ? Center(child: CircularProgressIndicator())
           : Padding(
               padding: EdgeInsets.all(12),
-              child: ListView(
-                padding: EdgeInsets.symmetric(vertical: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
                 children: [
-                  Text(note.title,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      )),
+                  Text(
+                    note.title,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   SizedBox(height: 8),
                   Text(
                     DateFormat.yMMMd().format(note.createdTime),
                     style: TextStyle(color: Colors.white38),
                   ),
-                  SizedBox(height: 8),
-                  Text(
-                    note.description,
-                    style: TextStyle(color: Colors.white70, fontSize: 18),
-                  )
+                  SizedBox(height: 20),
+                  MarkDownRenderer(data: note.description),
                 ],
               ),
             ),

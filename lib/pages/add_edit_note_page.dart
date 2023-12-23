@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:notesapp/db/notes_database.dart';
@@ -20,6 +20,7 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
   late bool isImportant;
   late String title;
   late String description;
+  bool isPreview = false;
 
   @override
   void initState() {
@@ -43,11 +44,11 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
           isImportant: isImportant,
           title: title,
           description: description,
-          onChangedImportant: (isImportant) =>
-              setState(() => this.isImportant = isImportant),
+          isPreview: isPreview,
+          onChangedImportant: (isImportant) => setState(() => this.isImportant = isImportant),
           onChangedTitle: (title) => setState(() => this.title = title),
-          onChangedDescription: (description) =>
-              setState(() => this.description = description),
+          onChangedDescription: (description) => setState(() => this.description = description),
+          onChangedIsText: (isPreview) => setState(() => this.isPreview = isPreview),
         ),
       ),
     );
@@ -57,15 +58,16 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
     final isFormValid = title.isNotEmpty;
 
     return Padding(
-        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            foregroundColor: Colors.white,
-            backgroundColor: isFormValid ? Colors.green.shade500 : Colors.grey.shade700,
-          ),
-          onPressed: addorUpdateNote,
-          child: Text('Save'),
-        ));
+      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.white,
+          backgroundColor: isFormValid ? Colors.green.shade500 : Colors.grey.shade700,
+        ),
+        onPressed: addorUpdateNote,
+        child: Text('Save'),
+      ),
+    );
   }
 
   void addorUpdateNote() async {
@@ -92,17 +94,11 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
       title: title,
       description: description,
     );
-
     await NoteDatabase.instance.update(note);
   }
 
   Future addNote() async {
-    final note = Note(
-        isImportant: isImportant,
-        title: title,
-        description: description,
-        createdTime: DateTime.now());
-
+    final note = Note(isImportant: isImportant, title: title, description: description, createdTime: DateTime.now());
     await NoteDatabase.instance.create(note);
   }
 }

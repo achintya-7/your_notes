@@ -25,7 +25,6 @@ class NoteCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     /// Pick colors from the accent colors based on index
     final color = _lightColors[index % _lightColors.length];
     final time = DateFormat.yMMMd().format(note.createdTime);
@@ -33,7 +32,7 @@ class NoteCardWidget extends StatelessWidget {
 
     return Card(
       color: color,
-      child: Container( 
+      child: Container(
         constraints: BoxConstraints(minHeight: minHeight, maxHeight: 250),
         padding: EdgeInsets.all(8),
         child: Column(
@@ -45,44 +44,36 @@ class NoteCardWidget extends StatelessWidget {
               style: TextStyle(color: Colors.grey.shade700),
             ),
             SizedBox(height: 4),
-
             Text(
               note.title,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20,
-                fontWeight: FontWeight.bold
-              ),
+              style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
             ),
-
-          
             note.isImportant
-             ? Text(
-               " ... ",
-               maxLines: 4,
-               overflow: TextOverflow.fade,
-              style: TextStyle(
-                  color: Colors.grey.shade800,
-                  fontSize: 16,
-              ),
-             )
-            : Text(
-              note.description,
-              maxLines: 4,
-              overflow: TextOverflow.fade,
-              style: TextStyle(
-                  color: Colors.grey.shade800,
-                  fontSize: 16,
-              ),
-            ),
+                ? Text(
+                    " ... ",
+                    maxLines: 4,
+                    overflow: TextOverflow.fade,
+                    style: TextStyle(
+                      color: Colors.grey.shade800,
+                      fontSize: 16,
+                    ),
+                  )
+                : Text(
+                    extractHeadersAndText(note.description),
+                    maxLines: 4,
+                    overflow: TextOverflow.fade,
+                    style: TextStyle(
+                      color: Colors.grey.shade800,
+                      fontSize: 16,
+                    ),
+                  ),
           ],
         ),
       ),
     );
-
-    
   }
-    double getMinHeight(int index) {
+
+  double getMinHeight(int index) {
     switch (index % 4) {
       case 0:
         return 100;
@@ -96,4 +87,12 @@ class NoteCardWidget extends StatelessWidget {
         return 100;
     }
   }
+}
+
+String extractHeadersAndText(String markdown) {
+  String extractedContent = markdown.
+    replaceAll(RegExp(r"!\[.*?\]\(.*?\)|\[.*?\]\(.*?\)"), '')
+    .replaceAll("#", "");
+  
+  return extractedContent;
 }
